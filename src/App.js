@@ -802,11 +802,38 @@ export default function App() {
   return (
     <div style={S.app}>
       <style>{`
-        @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
-        button:active { transform: scale(.97) !important; }
-        input:focus, textarea:focus, select:focus { border-color: var(--accent) !important; }
-        select option { background: #1a1a24; }
+        @media (max-width: 768px) {
+
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  button {
+    min-height: 42px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  nav {
+    width: 100%;
+    order: 3;
+  }
+
+  .mobile-stack {
+    grid-template-columns: 1fr !important;
+  }
+}
       `}</style>
 
       {/* Header */}
