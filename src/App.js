@@ -463,7 +463,7 @@ function Dashboard({ salary, expenses, cats, selMonth, onAddExp }) {
 
       {/* Chart + Top Categories */}
       {catTotals.length > 0 ? (
-        <div style={S.grid2}>
+        <div className="mobile-stack" style={S.grid2}>
           <div style={S.card}>
             <div style={S.cardTitle}>💰 Spending Breakdown</div>
             <ResponsiveContainer width="100%" height={240}>
