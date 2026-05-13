@@ -51,59 +51,198 @@ const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
 
 // ─── Styles (inline for portability) ─────────────────────────────────────────
 const S = {
-  app: { minHeight: '100vh', background: 'var(--bg)', display: 'flex', flexDirection: 'column' },
+  app: {
+    minHeight: '100vh',
+    background: 'var(--bg)',
+    display: 'flex',
+    flexDirection: 'column',
+    overflowX: 'hidden',
+  },
+
   header: {
-    background: 'linear-gradient(135deg, #0d0d18 0%, #111128 100%)',
-    borderBottom: '1px solid var(--border)',
-    padding: '0 24px',
-    position: 'sticky', top: 0, zIndex: 100,
+    background: 'rgba(10,10,15,0.78)',
+    borderBottom: '1px solid rgba(255,255,255,0.06)',
+    padding: '0 16px',
+    position: 'sticky',
+    top: 0,
+    zIndex: 100,
     backdropFilter: 'blur(20px)',
   },
-  headerInner: { maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 },
-  logo: { fontFamily: 'Syne', fontWeight: 800, fontSize: 20, color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 10 },
-  logoAccent: { color: 'var(--accent)' },
-  nav: { display: 'flex', gap: 4 },
+
+  headerInner: {
+    maxWidth: 1400,
+    margin: '0 auto',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: 14,
+    padding: '14px 0',
+  },
+
+  logo: {
+    fontFamily: 'Syne',
+    fontWeight: 800,
+    fontSize: 20,
+    color: 'var(--text)',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    flexShrink: 0,
+  },
+
+  logoAccent: {
+    color: 'var(--accent)',
+  },
+
+  nav: {
+    display: 'flex',
+    gap: 8,
+    overflowX: 'auto',
+    scrollbarWidth: 'none',
+    WebkitOverflowScrolling: 'touch',
+    flex: 1,
+    minWidth: 0,
+    paddingBottom: 2,
+  },
+
   navBtn: (active) => ({
-    padding: '8px 18px', borderRadius: 10, fontFamily: 'Syne', fontWeight: 600,
-    fontSize: 14, transition: 'all .2s',
-    background: active ? 'var(--accent)' : 'transparent',
-    color: active ? '#fff' : 'var(--text2)',
-    cursor: 'pointer', border: 'none',
+    padding: '10px 16px',
+    borderRadius: 14,
+    fontFamily: 'Syne',
+    fontWeight: 700,
+    fontSize: 13,
+    transition: 'all .25s ease',
+    background: active
+      ? 'linear-gradient(135deg,#7c5cff,#5b4bff)'
+      : 'rgba(255,255,255,0.04)',
+    color: active ? '#fff' : '#9898ad',
+    cursor: 'pointer',
+    border: active
+      ? '1px solid rgba(124,92,255,0.5)'
+      : '1px solid rgba(255,255,255,0.05)',
+    whiteSpace: 'nowrap',
+    flexShrink: 0,
+    backdropFilter: 'blur(10px)',
   }),
-  main: { maxWidth: 1100, margin: '0 auto', width: '100%', padding: '28px 24px', flex: 1 },
+
+  main: {
+    maxWidth: 1400,
+    margin: '0 auto',
+    width: '100%',
+    padding: '20px 16px 90px',
+    flex: 1,
+  },
+
   card: {
-    background: 'var(--surface)', border: '1px solid var(--border)',
-    borderRadius: 20, padding: 24, transition: 'border-color .2s',
+    background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(255,255,255,0.06)',
+    borderRadius: 24,
+    padding: 24,
+    transition: 'all .25s ease',
+    backdropFilter: 'blur(18px)',
   },
-  cardTitle: { fontFamily: 'Syne', fontWeight: 700, fontSize: 16, color: 'var(--text)', marginBottom: 16 },
-  grid2: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 },
-  grid3: { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16 },
+
+  cardTitle: {
+    fontFamily: 'Syne',
+    fontWeight: 700,
+    fontSize: 16,
+    color: 'var(--text)',
+    marginBottom: 16,
+  },
+
+  grid2: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit,minmax(320px,1fr))',
+    gap: 20,
+  },
+
+  grid3: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
+    gap: 16,
+  },
+
   statCard: (color) => ({
-    background: `linear-gradient(135deg, ${color}18 0%, ${color}08 100%)`,
-    border: `1px solid ${color}30`,
-    borderRadius: 20, padding: 20,
+    background: `linear-gradient(135deg, ${color}15 0%, rgba(255,255,255,0.03) 100%)`,
+    border: `1px solid ${color}25`,
+    borderRadius: 24,
+    padding: 20,
+    backdropFilter: 'blur(18px)',
   }),
-  statLabel: { fontSize: 13, color: 'var(--text2)', fontWeight: 500, marginBottom: 6 },
-  statVal: { fontFamily: 'Syne', fontWeight: 800, fontSize: 28, color: 'var(--text)' },
-  statSub: { fontSize: 12, color: 'var(--text3)', marginTop: 4 },
-  input: {
-    width: '100%', background: 'var(--surface2)', border: '1px solid var(--border)',
-    borderRadius: 12, padding: '12px 16px', color: 'var(--text)', fontSize: 15,
-    transition: 'border-color .2s',
+
+  statLabel: {
+    fontSize: 13,
+    color: 'var(--text2)',
+    fontWeight: 500,
+    marginBottom: 6,
   },
+
+  statVal: {
+    fontFamily: 'Syne',
+    fontWeight: 800,
+    fontSize: 28,
+    color: 'var(--text)',
+    lineHeight: 1.1,
+  },
+
+  statSub: {
+    fontSize: 12,
+    color: 'var(--text3)',
+    marginTop: 4,
+  },
+
+  input: {
+    width: '100%',
+    background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(255,255,255,0.06)',
+    borderRadius: 14,
+    padding: '14px 16px',
+    color: 'var(--text)',
+    fontSize: 15,
+    transition: 'all .2s ease',
+  },
+
   btn: (color = 'var(--accent)') => ({
-    background: color, color: '#fff', padding: '12px 22px',
-    borderRadius: 12, fontFamily: 'Syne', fontWeight: 700, fontSize: 14,
-    border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8,
-    transition: 'opacity .15s, transform .1s',
+    background: color,
+    color: '#fff',
+    padding: '12px 20px',
+    borderRadius: 14,
+    fontFamily: 'Syne',
+    fontWeight: 700,
+    fontSize: 14,
+    border: 'none',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    transition: 'all .18s ease',
+    whiteSpace: 'nowrap',
+    flexShrink: 0,
   }),
+
   pill: (color) => ({
-    display: 'inline-flex', alignItems: 'center', gap: 6,
-    background: `${color}22`, color: color, borderRadius: 20,
-    padding: '3px 10px', fontSize: 12, fontWeight: 600,
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 6,
+    background: `${color}20`,
+    color: color,
+    borderRadius: 999,
+    padding: '4px 12px',
+    fontSize: 12,
+    fontWeight: 700,
   }),
-  row: { display: 'flex', alignItems: 'center', gap: 12 },
-  spacer: { flex: 1 },
+
+  row: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+    flexWrap: 'wrap',
+  },
+
+  spacer: {
+    flex: 1,
+  },
 };
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
