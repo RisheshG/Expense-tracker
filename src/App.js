@@ -4,9 +4,18 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid
 } from 'recharts';
 import {
-  Plus, Trash2, X, ChevronRight, TrendingUp, TrendingDown,
-  Wallet, Target, Receipt, Tag, Calendar, FileText,
-  AlertCircle, CheckCircle, Zap, LayoutGrid, List, Edit3
+  Plus,
+  Trash2,
+  X,
+  ChevronRight,
+  TrendingUp,
+  Wallet,
+  Receipt,
+  AlertCircle,
+  CheckCircle,
+  Zap,
+  LayoutGrid,
+  List
 } from 'lucide-react';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
