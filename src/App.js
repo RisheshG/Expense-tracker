@@ -31,7 +31,7 @@ const CAT_COLORS = [
 ];
 
 const DEFAULT_CATS = [
-  { id: 'rent',      name: 'Rent / RentoMojo', icon: '🏠', color: CAT_COLORS[0] },
+  { id: 'rent',      name: 'Rent', icon: '🏠', color: CAT_COLORS[0] },
   { id: 'elec',      name: 'Electricity',      icon: '⚡', color: CAT_COLORS[1] },
   { id: 'grocery',   name: 'Grocery',          icon: '🛒', color: CAT_COLORS[2] },
   { id: 'commute',   name: 'Commute',          icon: '🚇', color: CAT_COLORS[3] },
